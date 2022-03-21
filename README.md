@@ -101,6 +101,8 @@ Please note that as of now __Python__ is required by one of the scripts so be su
 
 # Installing from Source Code
 
+**Please note** that as of now __Python__ is required by one of the scripts so be sure it's installed and available beforehand!
+
 **Background Music** usually takes less than a minute to build. You need [Xcode](https://developer.apple.com/xcode/download/) version 
 8 or higher.
 
