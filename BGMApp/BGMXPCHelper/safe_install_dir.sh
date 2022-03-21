@@ -56,6 +56,15 @@
 # recommendation above, or "0" otherwise.
 #
 
+# Make sure we have python installed before PATH is being overwritten
+# Note that some users might have python different directories like /opt/homebrew/...
+# which are added to PATH when the terminal is opened (e.g. .bashrc and alike)
+PYTHON_PATH=$(which python)
+if [[ "$PYTHON_PATH" == "" ]]; then
+    echo "Python not found. Please install!"
+    exit 1
+fi
+
 PATH=/bin:/sbin:/usr/bin:/usr/sbin; export PATH
 
 # Safe mode.
@@ -71,7 +80,7 @@ check_dir() {
     pushd . > /dev/null
 
     # Normalize the path and follow symlinks.
-    REAL_PATH=$(python -c "import os,sys; print(os.path.realpath(sys.argv[1]))" "$1")
+    REAL_PATH=$($PYTHON_PATH -c "import os,sys; print(os.path.realpath(sys.argv[1]))" "$1")
     cd "${REAL_PATH}"
 
     DIR_IS_SAFE=0
